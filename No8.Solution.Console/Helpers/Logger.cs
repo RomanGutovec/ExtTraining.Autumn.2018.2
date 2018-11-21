@@ -13,7 +13,7 @@ namespace No8.Solution.Console.Helpers
         {
             using (var stream = File.AppendText("log.txt"))
             {
-                stream.Write(message);
+                stream.Write(message+Environment.NewLine);
             }
         }
     }

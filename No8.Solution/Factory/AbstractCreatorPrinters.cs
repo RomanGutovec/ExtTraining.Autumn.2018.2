@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace No8.Solution.Factory
 {
-    public abstract class AbstractFactoryPrinters
+    public abstract class AbstractCreatorPrinters
     {
         public abstract Printer CreatePrinter();
     }

@@ -1,5 +1,4 @@
-﻿using No8.Solution;
-using No8.Solution.Entities;
+﻿using No8.Solution.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace No8.Solution.Factory
 {
-    public class AbstractPrinterEpson: AbstractFactoryPrinters
+    public class AbstractCreatorCanon: AbstractCreatorPrinters
     {
         public override Printer CreatePrinter()
         {
-            return new EpsonPrinter();
+            return new CanonPrinter();
         }
     }
 }

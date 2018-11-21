@@ -53,8 +53,6 @@ namespace No8
         public static void Log(string s)
         {
             File.AppendText("log.txt").Write(s);
-        }
-
-        public static event PrinterDelegate OnPrinted;
+        }     
     }
 }

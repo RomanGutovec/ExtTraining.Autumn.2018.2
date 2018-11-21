@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace No8.Solution
+namespace No8.Solution.Console.Helpers
 {
-    public interface IPrint
+    public enum KindOfPrinter
     {
+        Canon = 2,
+        Epson
     }
 }

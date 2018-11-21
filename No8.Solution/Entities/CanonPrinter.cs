@@ -11,24 +11,22 @@ namespace No8.Solution.Entities
     {
         public CanonPrinter()
         {
-            Model = "231";
-            Name = "Epson";
+            this.Name = "Canon";
+            this.Model = "231";
         }
 
         public CanonPrinter(string name, string model)
         {
-            Model = name;
-            Name = model;
+            this.Name = name;
+            this.Model = model;
         }
 
         public override void Print(FileStream fs)
         {
             for (int i = 0; i < fs.Length; i++)
             {
-                // simulate printing
-                System.Console.WriteLine(fs.ReadByte());
+                 System.Console.WriteLine(fs.ReadByte());
             }
         }
-
     }
 }

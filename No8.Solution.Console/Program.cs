@@ -26,7 +26,6 @@ namespace No8.Solution.Console
                 }
             }
 
-            System.Console.ReadLine();
         }
 
         private static int Work(PrinterManager printerManager)
@@ -36,9 +35,7 @@ namespace No8.Solution.Console
                 $"2: Print on canon\n" +
                 $"3: Print on epson\n" +
                 $"0: Exit\n");
-            int choice = 0;
-            int.TryParse(System.Console.ReadLine(), out choice);
-
+            int.TryParse(System.Console.ReadLine(), out int choice);
             if (choice == 1)
             {
                 System.Console.WriteLine("Enter printer name");
@@ -56,17 +53,49 @@ namespace No8.Solution.Console
                     printerManager.Add(new CanonPrinter(namePrinter, printerModel));
                 }
 
-                return choice;
+                ShowPrinters(printerManager.Printers);
             }
-            else if (choice == 0)
+             else if (choice == (int)KindOfPrinter.Canon)
             {
-                return choice;
+                string kindOfPrinter = "Canon";
+                NewMethod(printerManager, kindOfPrinter);
             }
-            else
+            else if (choice == (int)KindOfPrinter.Epson)
             {
-                //TODO
-                printerManager.Print(printerManager.Printers[choice - 2]);
-                return choice;
+                string kindOfPrinter = "Epson";
+                NewMethod(printerManager, kindOfPrinter);
+            }
+
+            return choice;
+        }
+
+        private static void NewMethod(PrinterManager printerManager, string kindOfPrinter)
+        {
+            System.Console.WriteLine("Choose number printer which you would like use to print");
+            List<Printer> concretePrinters = new List<Printer>(printerManager.Printers.Where(x => x.Name == kindOfPrinter));
+            ShowPrinters(concretePrinters);
+            int result;
+            int.TryParse(System.Console.ReadLine(), out result);
+            while (true)
+            {
+                if (result > concretePrinters.Count || result < 0)
+                {
+                    System.Console.WriteLine("Incorrect input, try again...");
+                }
+                else
+                {
+                    printerManager.Print(printerManager.Printers.Find(x => x.Name == concretePrinters[result - 1].Name && x.Model == concretePrinters[result - 1].Model));
+                    break;
+                }
+            }
+        }
+
+        private static void ShowPrinters(IEnumerable<Printer> printers)
+        {
+            int index = 1;
+            foreach (var concretePrinter in printers)
+            {
+                System.Console.WriteLine($"{index++}: {concretePrinter.Name} {concretePrinter.Model}");
             }
         }
     }

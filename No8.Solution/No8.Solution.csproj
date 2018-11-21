@@ -43,15 +43,16 @@
   <ItemGroup>
     <Compile Include="Entities\CanonPrinter.cs" />
     <Compile Include="Entities\EpsonPrinter.cs" />
-    <Compile Include="Factory\AbstractFactoryPrinters.cs" />
-    <Compile Include="Factory\AbstractPrinterCanon.cs" />
-    <Compile Include="Factory\AbstractPrinterEpson.cs" />
+    <Compile Include="Factory\AbstractCreatorPrinters.cs" />
+    <Compile Include="Factory\AbstractCreatorCanon.cs" />
+    <Compile Include="Factory\AbstractCreatorEpson.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IPrint.cs" />
-    <Compile Include="Printer.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Entities\Printer.cs" />
     <Compile Include="PrinterManager.cs" />
     <Compile Include="PrintEventArgs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
