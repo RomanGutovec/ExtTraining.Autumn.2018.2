@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace No8.Solution
 {
-    public class PrintEventArgs: EventArgs
+    public class PrintEventArgs : EventArgs
     {
-        public string Message { get; set; }
-
         public PrintEventArgs(string message)
         {
-            Message = message;
+            this.Message = message;
         }
+
+        public string Message { get; set; }
     }
 }

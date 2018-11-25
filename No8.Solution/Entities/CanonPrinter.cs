@@ -12,16 +12,20 @@ namespace No8.Solution.Entities
         public CanonPrinter()
         {
             this.Name = "Canon";
-            this.Model = "231";
         }
 
-        public CanonPrinter(string name, string model)
+        public CanonPrinter(string model) : this()
+        {
+            this.Model = model;
+        }
+
+        public CanonPrinter(string name, string model) : this(model)
         {
             this.Name = name;
             this.Model = model;
         }
 
-        public override void Print(FileStream fs)
+        protected override void ConcretePrint(FileStream fs)
         {
             for (int i = 0; i < fs.Length; i++)
             {

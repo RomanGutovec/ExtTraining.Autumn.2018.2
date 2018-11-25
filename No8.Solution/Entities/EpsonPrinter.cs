@@ -10,18 +10,22 @@ namespace No8.Solution.Entities
     public class EpsonPrinter : Printer
     {
         public EpsonPrinter()
-        {
-            this.Model = "231";
+        {            
             this.Name = "Epson";
         }
 
-        public EpsonPrinter(string name, string model)
+        public EpsonPrinter(string model) : this()
+        {
+            this.Model = model;
+        }
+
+        public EpsonPrinter(string name, string model) : this(model)
         {
             this.Name = name;
             this.Model = model;
         }
 
-        public override void Print(FileStream fs)
+        protected override void ConcretePrint(FileStream fs)
         {
             for (int i = 0; i < fs.Length; i++)
             {

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using No8.Solution.Console.Helpers;
 using No8.Solution.Entities;
 using No8.Solution.Factory;
@@ -15,8 +17,8 @@ namespace No8.Solution.Console
         static void Main(string[] args)
         {
             PrinterManager manager = new PrinterManager(new Logger());
-            manager.Add(new EpsonPrinter());
-            manager.Add(new CanonPrinter());
+            manager.Add(new EpsonPrinter("23"));
+            manager.Add(new CanonPrinter("45"));
 
             while (true)
             {
@@ -25,7 +27,6 @@ namespace No8.Solution.Console
                     break;
                 }
             }
-
         }
 
         private static int Work(PrinterManager printerManager)
@@ -55,7 +56,7 @@ namespace No8.Solution.Console
 
                 ShowPrinters(printerManager.Printers);
             }
-             else if (choice == (int)KindOfPrinter.Canon)
+            else if (choice == (int)KindOfPrinter.Canon)
             {
                 string kindOfPrinter = "Canon";
                 NewMethod(printerManager, kindOfPrinter);
@@ -75,16 +76,19 @@ namespace No8.Solution.Console
             List<Printer> concretePrinters = new List<Printer>(printerManager.Printers.Where(x => x.Name == kindOfPrinter));
             ShowPrinters(concretePrinters);
             int result;
-            int.TryParse(System.Console.ReadLine(), out result);
             while (true)
             {
+                int.TryParse(System.Console.ReadLine(), out result);
                 if (result > concretePrinters.Count || result < 0)
                 {
                     System.Console.WriteLine("Incorrect input, try again...");
                 }
                 else
                 {
-                    printerManager.Print(printerManager.Printers.Find(x => x.Name == concretePrinters[result - 1].Name && x.Model == concretePrinters[result - 1].Model));
+                    var dialogWindow = new OpenFileDialog();
+                    dialogWindow.ShowDialog();
+                    var fileDialog = File.OpenRead(dialogWindow.FileName);
+                    printerManager.Print(printerManager.Printers.Find(x => x.Name == concretePrinters[result - 1].Name && x.Model == concretePrinters[result - 1].Model), fileDialog.Name);
                     break;
                 }
             }
